@@ -7,4 +7,5 @@ export interface Formation {
     difficulte: "débutant" | "intermédiare" | "avancé";
     tags: string[];
     categorie: string[];
+    imageRefernce: string;
 }

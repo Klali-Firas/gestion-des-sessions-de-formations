@@ -1,1 +1,62 @@
-<p>accueil works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Charge Horaire</th>
+            <th>Programme</th>
+            <th>Difficulté</th>
+            <th>Tags</th>
+            <th>Categories</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let formation of formations">
+            <th>{{formation.id}}</th>
+            <td> {{formation.titre}} </td>
+            <td> {{formation.description}} </td>
+            <td> {{formation.chargeHoraire}} </td>
+            <td> {{formation.programme}} </td>
+            <td> {{formation.difficulte}} </td>
+            <td><ng-container *ngFor="let tag of formation.tags">{{tag}}</ng-container> </td>
+            <td><ng-container *ngFor="let cat of formation.categorie">{{cat}}</ng-container></td>
+        </tr>
+    </tbody>
+</table>
+<div *ngFor="let cat of categories">
+    <h2>{{cat}} </h2>
+
+    <div id="{{cat.replace(' ', '')}}" class="carousel slide w-50" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <ng-container *ngFor="let formation of findAllFormationByCategorie(cat); let i = index">
+                <button *ngIf="formation.categorie.includes(cat)" type="button"
+                    [attr.data-bs-target]="'#'+cat.replace(' ', '')" [attr.data-bs-slide-to]="i"
+                    [class.active]="i==formations.indexOf(findFirstFormationByCategorie(cat)!)"
+                    [attr.aria-label]="'Slide'+ i+1"></button>
+            </ng-container>
+        </div>
+        <div class="carousel-inner">
+            <ng-container *ngFor="let formation of findAllFormationByCategorie(cat); let isFirst =first">
+                <div class="carousel-item text-center" data-bs-interval="5000" [class.active]="isFirst">
+                    <img [src]="formation.imageRefernce" class="d-block w-100" alt="{{formation.titre}}">
+                    <div class="carousel-caption d-none d-md-block bg-dark">
+                        <h5 class="mb-0">{{formation.titre}} </h5>
+                        <p class="mb-0">{{formation.description}}</p>
+                    </div>
+                </div>
+            </ng-container>
+
+        </div>
+        <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#'+cat.replace(' ', '')"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#'+cat.replace(' ', '')"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>

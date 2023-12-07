@@ -1,0 +1,97 @@
+{
+  "candidats": [
+    {
+      "id": 1,
+      "nom": "Dupont",
+      "prenom": "Jean",
+      "email": "jean.dupont@example.com",
+      "cin": 12345678,
+      "mdp": "password123"
+    },
+    {
+      "id": 2,
+      "nom": "Martin",
+      "prenom": "Sophie",
+      "email": "sophie.martin@example.com",
+      "cin": 87654321,
+      "mdp": "password456"
+    }
+  ],
+  "formateurs": [
+    {
+      "id": 1,
+      "nom": "Durand",
+      "prenom": "Pierre",
+      "email": "pierre.durand@example.com",
+      "tel": 987654321,
+      "cin": 11111111,
+      "specialite": "Informatique",
+      "mdp": "password456"
+    },
+    {
+      "id": 2,
+      "nom": "Lefevre",
+      "prenom": "Marie",
+      "email": "marie.lefevre@example.com",
+      "tel": 123456789,
+      "cin": 22222222,
+      "specialite": "Mathématiques",
+      "mdp": "password789"
+    }
+  ],
+  "formations": [
+    {
+      "id": 1,
+      "titre": "Formation Angular",
+      "description": "Apprenez à développer des applications avec Angular",
+      "chargeHoraire": 20,
+      "programme": "Introduction à Angular, Components, Services, etc.",
+      "difficulte": "débutant",
+      "tags": ["angular", "web development"],
+      "categorie": ["Informatique", "Développement web"],
+      "imageRefernce":"https://picsum.photos/1200/800?random=15"
+    },{
+      "id": 2,
+      "titre": "Formation Aerosapce",
+      "description": "Maîtrisez la Aerospace",
+      "chargeHoraire": 15,
+      "programme": "Introduction à AeroSpace, Structures de contrôle, Fonctions, etc.",
+      "difficulte": "avancé",
+      "tags": ["space", "aerospace"],
+      "categorie": ["Aerosapce"],
+      "imageRefernce":"https://picsum.photos/1200/800?random=2"
+    },
+    {
+      "id": 3,
+      "titre": "Formation Python",
+      "description": "Maîtrisez la programmation en Python",
+      "chargeHoraire": 30,
+      "programme": "Introduction à Python, Structures de contrôle, Fonctions, etc.",
+      "difficulte": "intermédiaire",
+      "tags": ["python", "programming"],
+      "categorie": ["Informatique", "Programmation"],
+      "imageRefernce":"https://picsum.photos/1200/800?random=1"
+    }
+    
+  ],
+  "sessions": [
+    {
+      "id": 1,
+      "formation": 1,
+      "formateurs": [1, 2],
+      "candidats": [1, 2],
+      "dateDeb": "2023-12-01T00:00:00.000Z",
+      "dateFin": "2023-12-31T00:00:00.000Z",
+      "planning": "Lundi, Mercredi, Vendredi de 18h à 20h"
+    },
+    {
+      "id": 2,
+      "formation": 2,
+      "formateurs": [2],
+      "candidats": [1],
+      "dateDeb": "2023-12-10T00:00:00.000Z",
+      "dateFin": "2023-12-28T00:00:00.000Z",
+      "planning": "Mardi, Jeudi de 19h à 21h"
+    }
+  ]
+}
