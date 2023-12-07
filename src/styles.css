@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --mainC: hsl(216, 100%, 61%);
+  --secC: hsl(0, 0%, 95%);
+}
+body {
+  background-color: var(--secC);
+}
+.row {
+  margin: 0;
+  --bs-gutter-x: 0;
+}
+
+textarea {
+  resize: none;
+}
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.prevent-scroll {
+  overflow: hidden;
+}
+/* .nav-link {
+  color: white !important;
+} */
+.navbar-collapse {
+  flex-grow: 0;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: var(--mainC);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: var(--mainC);
+}
