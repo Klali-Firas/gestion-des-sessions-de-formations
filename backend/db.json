@@ -47,19 +47,31 @@
       "chargeHoraire": 20,
       "programme": "Introduction à Angular, Components, Services, etc.",
       "difficulte": "débutant",
-      "tags": ["angular", "web development"],
-      "categorie": ["Informatique", "Développement web"],
-      "imageRefernce":"https://picsum.photos/1200/800?random=15"
-    },{
+      "tags": [
+        "angular",
+        "web development"
+      ],
+      "categorie": [
+        "Informatique",
+        "Développement web"
+      ],
+      "imageRefernce": "https://picsum.photos/1200/800?random=15"
+    },
+    {
       "id": 2,
       "titre": "Formation Aerosapce",
       "description": "Maîtrisez la Aerospace",
       "chargeHoraire": 15,
       "programme": "Introduction à AeroSpace, Structures de contrôle, Fonctions, etc.",
       "difficulte": "avancé",
-      "tags": ["space", "aerospace"],
-      "categorie": ["Aerosapce"],
-      "imageRefernce":"https://picsum.photos/1200/800?random=2"
+      "tags": [
+        "space",
+        "aerospace"
+      ],
+      "categorie": [
+        "Aerosapce"
+      ],
+      "imageRefernce": "https://picsum.photos/1200/800?random=2"
     },
     {
       "id": 3,
@@ -68,18 +80,29 @@
       "chargeHoraire": 30,
       "programme": "Introduction à Python, Structures de contrôle, Fonctions, etc.",
       "difficulte": "intermédiaire",
-      "tags": ["python", "programming"],
-      "categorie": ["Informatique", "Programmation"],
-      "imageRefernce":"https://picsum.photos/1200/800?random=1"
+      "tags": [
+        "python",
+        "programming"
+      ],
+      "categorie": [
+        "Informatique",
+        "Programmation"
+      ],
+      "imageRefernce": "https://picsum.photos/1200/800?random=1"
     }
-    
   ],
   "sessions": [
     {
       "id": 1,
       "formation": 1,
-      "formateurs": [1, 2],
-      "candidats": [1, 2],
+      "formateurs": [
+        1,
+        2
+      ],
+      "candidats": [
+        1,
+        2
+      ],
       "dateDeb": "2023-12-01T00:00:00.000Z",
       "dateFin": "2023-12-31T00:00:00.000Z",
       "planning": "Lundi, Mercredi, Vendredi de 18h à 20h"
@@ -87,11 +110,60 @@
     {
       "id": 2,
       "formation": 2,
-      "formateurs": [2],
-      "candidats": [1],
+      "formateurs": [
+        2
+      ],
+      "candidats": [
+        1
+      ],
       "dateDeb": "2023-12-10T00:00:00.000Z",
       "dateFin": "2023-12-28T00:00:00.000Z",
       "planning": "Mardi, Jeudi de 19h à 21h"
+    },
+    {
+      "id": 3,
+      "formation": 1,
+      "formateurs": [
+        1,
+        2
+      ],
+      "candidats": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "dateDeb": "2024-01-01T00:00:00.000Z",
+      "dateFin": "2024-01-31T00:00:00.000Z",
+      "planning": "Lundi, Mercredi, Vendredi de 18h à 20h"
+    }
+  ],
+  "demande-formation": [
+    {
+      "objet": "Formatteur du softSkills",
+      "description": "nous avons class L2DSI2 vous demandent une formation sur soft skills",
+      "id": 1
+    },
+    {
+      "objet": "iojiojoi",
+      "description": "p,kpokopkp",
+      "id": 2
+    }
+  ],
+  "users": [
+    {
+      "email": "firas@gmail.com",
+      "password": "$2a$10$.EaY1E4f/2WBUrlgJjP52esz.h1vwzi7gUBkSFWnVrkx1acagb4be",
+      "id": 1
+    },
+    {
+      "email": "firasklali12@gmail.com",
+      "password": "$2a$10$KbQ9mxatk2Ya2iXGkzEMpOYSIyrbudI1byaOkIJBA8mzmpTwxtA2i",
+      "nom": "klali",
+      "prenom": "firas",
+      "cin": 11451314,
+      "type": "candidat",
+      "id": 2
     }
   ]
 }

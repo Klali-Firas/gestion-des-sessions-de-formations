@@ -1,1 +1,45 @@
-<p>formations works!</p>
+<input class="form-control" type="text" #inp (keyup)="filterFormations(inp.value)">
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Charge Horaire</th>
+            <th>Programme</th>
+            <th>Difficulté</th>
+            <th>Tags</th>
+            <th>Categories</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let formation of filteredFormations" (click)="navigateToFormation(formation.id.toString())">
+            <th>{{formation.id}}</th>
+            <td> {{formation.titre}} </td>
+            <td> {{formation.description}} </td>
+            <td> {{formation.chargeHoraire}} </td>
+            <td> {{formation.programme}} </td>
+            <td> {{formation.difficulte}} </td>
+            <td><ng-container *ngFor="let tag of formation.tags">{{tag}}</ng-container> </td>
+            <td><ng-container *ngFor="let cat of formation.categorie">{{cat}}</ng-container></td>
+        </tr>
+    </tbody>
+</table>
+<div class="text-center">
+    <button class="btn btn-primary" (click)="togglePopUp()">Demande Formation</button>
+</div>
+
+<div class="d-flex justify-content-center align-items-center vw-100 vh-100 fixed-top zindex-popover bg-dark"
+    *ngIf="isDemanding" (click)="togglePopUp()" style="--bs-bg-opacity:0.6;backdrop-filter:blur(8px)">
+    <div class=" p-4   rounded text-center details-card" style="width:clamp(300px , 60vw , 500px);"
+        (click)="$event.stopPropagation()">
+        <div class=" d-flex flex-column justify-content-center align-items-center">
+            <h5 class=" mb-3">Demande Formation</h5>
+            <input type="text" id="objet" #objet class="form-control mb-3 details-card" placeholder="Objet...">
+            <textarea class="form-control mb-3 details-card" #desc name="description" id="description" cols="30"
+                rows="5" placeholder="Description..."></textarea>
+            <button class="btn btn-primary" (click)="addDemande(objet.value,desc.value)">Confirm Demande</button>
+        </div>
+    </div>
+</div>

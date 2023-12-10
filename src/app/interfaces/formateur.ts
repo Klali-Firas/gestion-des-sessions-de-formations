@@ -6,5 +6,6 @@ export interface Formateur {
     tel: number;
     cin: number;
     specialite: string;
-    mdp: string;
+    password: string;
+    type: string
 }

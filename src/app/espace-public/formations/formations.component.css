@@ -1,0 +1,11 @@
+tr {
+  cursor: pointer;
+}
+
+h5 {
+  font-weight: 600;
+  background: -webkit-linear-gradient(135deg, #396af1 10%, #a665f6 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

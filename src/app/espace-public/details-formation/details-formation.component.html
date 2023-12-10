@@ -1,1 +1,28 @@
-<p>details-formation works!</p>
+<div class="row p-5" *ngIf="formation">
+    <div class="col-12 col-md-6 p-1  ">
+        <img [src]="formation.imageRefernce" alt="" class="d-block w-100 rounded">
+    </div>
+    <div class="col-12 mt-3 col-md-5 ms-md-3  mt-md-0 p-4 details-card">
+        <!-- <p>{{formation.categorie}} </p> -->
+        <h1>{{formation.titre}} </h1>
+        <h6>Niveau: <p class="d-inline fw-bold">{{formation.difficulte}}</p>
+        </h6>
+        <h5>{{formation.description}}</h5>
+        <p>{{formation.programme}}</p>
+        <h6>{{"Volume Horaire: "+formation.chargeHoraire+" Heures"}} </h6>
+        <h6>Tags:</h6>
+        <div class="row"><span *ngFor="let tag of formation.tags" class="w-auto mt-2">{{tag}}</span></div>
+        <div class="details-card p-2 mt-2" *ngFor="let session of sessions;let i=index">
+            <h2>{{"session "+(i+1)}}</h2>
+            <p>{{"Date Debut: "+formatDate(session.dateDeb)}}</p>
+            <p>{{"Date Fin: "+formatDate(session.dateFin)}}</p>
+            <p>{{session.planning}}</p>
+            <p>{{"nombre de places: "+session.candidats.length+"/15"}}</p>
+            <div class="w-100 text-end"><button class="btn btn-primary me-1 mb-1"
+                    [disabled]="session.candidats.length>=15">Inscrire</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

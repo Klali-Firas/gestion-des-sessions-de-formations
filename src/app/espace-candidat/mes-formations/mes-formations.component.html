@@ -1,0 +1,10 @@
+<div *ngIf="sessions && formations" class="row g-3 p-3 justify-content-center">
+    <div *ngFor="let session of sessions" class=" col-12 col-xl-3 col-md-4 col-sm-6">
+        <div class="p-2 details-card h-100">
+            <h3>{{formations[session.formation].titre}}</h3>
+            <h6>{{"Date Debut: "+formatDate(session.dateDeb)}}</h6>
+            <h6>{{"Date Fin: "+formatDate(session.dateFin)}}</h6>
+            <h6>{{"Planning: "+session.planning}}</h6>
+        </div>
+    </div>
+</div>
