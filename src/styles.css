@@ -29,8 +29,11 @@ textarea {
   box-shadow: inset -0.125em -0.125em 0.25em rgba(255, 255, 255, 0.7),
     inset 0.125em 0.125em 0.25em rgba(189, 200, 223, 0.7);
 }
-.details-card :focus {
+.details-card:focus {
   background-color: #eeeff5;
+  border-color: transparent;
+  box-shadow: inset -0.125em -0.125em 0.1em #396af1,
+    inset 0.125em 0.125em 0.1em #a665f6;
 }
 .prevent-scroll {
   overflow: hidden;

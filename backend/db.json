@@ -93,28 +93,16 @@
   ],
   "sessions": [
     {
-      "id": 1,
-      "formation": 1,
-      "formateurs": [
-        1,
-        2
-      ],
-      "candidats": [
-        1,
-        2
-      ],
-      "dateDeb": "2023-12-01T00:00:00.000Z",
-      "dateFin": "2023-12-31T00:00:00.000Z",
-      "planning": "Lundi, Mercredi, Vendredi de 18h à 20h"
-    },
-    {
       "id": 2,
       "formation": 2,
       "formateurs": [
-        2
+        2,
+        3
       ],
       "candidats": [
-        1
+        1,
+        2,
+        4
       ],
       "dateDeb": "2023-12-10T00:00:00.000Z",
       "dateFin": "2023-12-28T00:00:00.000Z",
@@ -136,6 +124,21 @@
       "dateDeb": "2024-01-01T00:00:00.000Z",
       "dateFin": "2024-01-31T00:00:00.000Z",
       "planning": "Lundi, Mercredi, Vendredi de 18h à 20h"
+    },
+    {
+      "formation": 1,
+      "formateurs": [
+        1,
+        2
+      ],
+      "candidats": [
+        1,
+        2
+      ],
+      "dateDeb": "2023-12-01T00:00:00.000Z",
+      "dateFin": "2023-12-31T00:00:00.000Z",
+      "planning": "Lundi, Mercredi, Vendredi de 18h à 20h",
+      "id": 4
     }
   ],
   "demande-formation": [
@@ -164,6 +167,26 @@
       "cin": 11451314,
       "type": "candidat",
       "id": 2
+    },
+    {
+      "email": "Skander@gmail.com",
+      "password": "$2a$10$lBCqokxQJh5iteG/.mV5eeDSxjMG1wboGfncesADZDds3bqVPcqBu",
+      "nom": "Seddik",
+      "prenom": "Skander",
+      "tel": 54545454,
+      "cin": 14725836,
+      "specialite": "Backend",
+      "type": "formateur",
+      "id": 3
+    },
+    {
+      "email": "berryraslen@gmail.com",
+      "password": "$2a$10$F6UfNYQxPH2F/mLN5atjkuqC24lPJEC93wSc9sbvxMrlfK3lm/tzy",
+      "nom": "Berry",
+      "prenom": "Raslen",
+      "cin": 14785236,
+      "type": "candidat",
+      "id": 4
     }
   ]
 }

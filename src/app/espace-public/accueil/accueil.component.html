@@ -38,7 +38,7 @@
         </div>
         <div class="carousel-inner">
             <ng-container *ngFor="let formation of findAllFormationByCategorie(cat); let isFirst =first">
-                <div class="carousel-item text-center" data-bs-interval="5000" [class.active]="isFirst">
+                <div class="carousel-item text-center" data-bs-interval="3000" [class.active]="isFirst">
                     <img [src]="formation.imageRefernce" class="d-block w-100" alt="{{formation.titre}}">
                     <div class="carousel-caption d-none d-md-block bg-dark">
                         <h5 class="mb-0">{{formation.titre}} </h5>

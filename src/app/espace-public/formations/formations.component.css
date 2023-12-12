@@ -9,3 +9,10 @@ h5 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+img {
+  transition: 300ms ease-in-out;
+}
+
+.details-card:hover img {
+  scale: 1.1;
+}

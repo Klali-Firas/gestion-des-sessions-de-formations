@@ -13,6 +13,18 @@ import { DatePipe } from '@angular/common';
 import { NavCandidatComponent } from './espace-candidat/nav-candidat/nav-candidat.component';
 import { MesFormationsComponent } from './espace-candidat/mes-formations/mes-formations.component';
 import { ShellCandidatComponent } from './espace-candidat/shell-candidat/shell-candidat.component';
+import { ShellFormateurComponent } from './espace-formateur/shell-formateur/shell-formateur.component';
+import { MesFormationsFormateurComponent } from './espace-formateur/mes-formations-formateur/mes-formations-formateur.component';
+import { DetailsSessionComponent } from './espace-formateur/details-session/details-session.component';
+import { NavFormateurComponent } from './espace-formateur/nav-formateur/nav-formateur.component';
+import { ShellAdminComponent } from './espace-admin/shell-admin/shell-admin.component';
+import { NavAdminComponent } from './espace-admin/nav-admin/nav-admin.component';
+import { GestionCandidatsComponent } from './espace-admin/gestion-candidats/gestion-candidats.component';
+import { GestionFormateursComponent } from './espace-admin/gestion-formateurs/gestion-formateurs.component';
+import { GestionFormationsComponent } from './espace-admin/gestion-formations/gestion-formations.component';
+import { ModifierCandidatComponent } from './espace-admin/modifier-candidat/modifier-candidat.component';
+import { ModifierFormateurComponent } from './espace-admin/modifier-formateur/modifier-formateur.component';
+import { GestionSessionComponent } from './espace-admin/gestion-session/gestion-session.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +36,19 @@ import { ShellCandidatComponent } from './espace-candidat/shell-candidat/shell-c
     ShellComponent,
     NavCandidatComponent,
     MesFormationsComponent,
-    ShellCandidatComponent
+    ShellCandidatComponent,
+    ShellFormateurComponent,
+    MesFormationsFormateurComponent,
+    DetailsSessionComponent,
+    NavFormateurComponent,
+    ShellAdminComponent,
+    NavAdminComponent,
+    GestionCandidatsComponent,
+    GestionFormateursComponent,
+    GestionFormationsComponent,
+    ModifierCandidatComponent,
+    ModifierFormateurComponent,
+    GestionSessionComponent
   ],
   imports: [
     BrowserModule,

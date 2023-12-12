@@ -17,4 +17,11 @@ export class SessionService {
   getSessionsByFormationId(id: string) {
     return this.http.get<Session[]>(`${this.apiUrl}?formation=${id}`)
   }
+  getSessionsById(id: string) {
+    return this.http.get<Session>(`${this.apiUrl}/${id}`)
+  }
+
+  updateSession(id: string, body: any) {
+    return this.http.put(`${this.apiUrl}/${id}`, body);
+  }
 }

@@ -1,0 +1,38 @@
+<div class="row p-5 g-3" *ngIf="formation">
+    <div class="col-12 col-md-6  ">
+        <div>
+            <img [src]="formation.imageRefernce" alt="" class="d-block w-100 rounded">
+        </div>
+    </div>
+    <!--mt-3 ms-md-3 mt-md-0 -->
+    <div class="col-12  col-md-6 ">
+        <div class="p-4 details-card">
+            <!-- <p>{{formation.categorie}} </p> -->
+            <h1>{{formation.titre}} </h1>
+            <h6>Niveau: <p class="d-inline fw-bold">{{formation.difficulte}}</p>
+            </h6>
+            <h5>{{formation.description}}</h5>
+            <p>{{formation.programme}}</p>
+            <h6>{{"Volume Horaire: "+formation.chargeHoraire+" Heures"}} </h6>
+            <h6>Tags:</h6>
+            <div class="row"><span *ngFor="let tag of formation.tags" class="w-auto mt-2">{{tag}}</span></div>
+            <div class="details-card p-2 mt-2">
+                <h2>{{"session "}}</h2>
+                <p>{{"Date Debut: "+formatDate(session.dateDeb)}}</p>
+                <p>{{"Date Fin: "+formatDate(session.dateFin)}}</p>
+                <p>{{session.planning}}</p>
+                <p>{{"Participants ("+session.candidats.length+"/15) :"}}</p>
+                <div class="ms-4">
+                    <ng-container *ngFor="let candidat of candidats">
+                        <p *ngIf="session.candidats.includes(candidat.id!)">
+                            {{"- "+candidat.nom+" "+candidat.prenom}}
+                        </p>
+                    </ng-container>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

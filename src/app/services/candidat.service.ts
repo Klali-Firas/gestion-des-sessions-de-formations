@@ -17,4 +17,8 @@ export class CandidatService {
     return this.http.post<{ accessToken: string, user: Candidat }>(`${this.apiUrl}/login`, { email, password })
   }
 
+  getAllCandidats() {
+    return this.http.get<Candidat[]>(`${this.apiUrl}/users?type=candidat`);
+  }
+
 }
