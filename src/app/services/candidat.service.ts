@@ -21,4 +21,21 @@ export class CandidatService {
     return this.http.get<Candidat[]>(`${this.apiUrl}/users?type=candidat`);
   }
 
+
+  getCandidatById(id: string) {
+    return this.http.get<Candidat>(`${this.apiUrl}/users/${id}`);
+  }
+
+  updateCandidatPassword(id: string, password: string) {
+    return this.http.patch<Candidat>(`${this.apiUrl}/users/${id}`, { password });
+  }
+
+  updateCandidatData(id: string, data: any) {
+    return this.http.patch<Candidat>(`${this.apiUrl}/users/${id}`, data);
+  }
+
+  deleteCandidat(id: string) {
+    return this.http.delete(`${this.apiUrl}/users/${id}`);
+  }
+
 }

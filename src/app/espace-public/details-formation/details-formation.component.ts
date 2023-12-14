@@ -4,7 +4,7 @@ import { Formation } from 'src/app/interfaces/formation';
 import { Session } from 'src/app/interfaces/session';
 import { FormationsService } from 'src/app/services/formations.service';
 import { SessionService } from 'src/app/services/session.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 import { Candidat } from 'src/app/interfaces/candidat';
 import { CandidatService } from 'src/app/services/candidat.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,7 +15,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./details-formation.component.css']
 })
 export class DetailsFormationComponent implements OnInit {
-  constructor(private candidatService: CandidatService, private formBuilder: FormBuilder, private aroute: ActivatedRoute, private formationService: FormationsService, private sessionService: SessionService, private datePipe: DatePipe) { }
+  constructor(private candidatService: CandidatService, private formBuilder: FormBuilder, private aroute: ActivatedRoute, private formationService: FormationsService, private sessionService: SessionService, private datePipe: DatePipe, private titleCase: TitleCasePipe) { }
 
   formation!: Formation;
   sessions: Session[] = [];
@@ -52,7 +52,7 @@ export class DetailsFormationComponent implements OnInit {
   }
 
   signupForSession() {
-    this.sessionService.updateSession(this.sessionAChanger.id.toString(), this.sessionAChanger).subscribe({
+    this.sessionService.updateSession(this.sessionAChanger.id!.toString(), this.sessionAChanger).subscribe({
       next: (res) => {
         this.toggleCandidatPopUp();
         this.getSessionsByFormationid();
@@ -116,11 +116,11 @@ export class DetailsFormationComponent implements OnInit {
       return
     }
     let candidat: Candidat = {
-      nom: this.formInscrireCandidat.get('nom')!.value!,
-      prenom: this.formInscrireCandidat.get('prenom')!.value!,
-      email: this.formInscrireCandidat.get('email')!.value!,
+      nom: this.titleCase.transform(this.formInscrireCandidat.get('nom')!.value!.trim()),
+      prenom: this.titleCase.transform(this.formInscrireCandidat.get('prenom')!.value!.trim()),
+      email: this.formInscrireCandidat.get('email')!.value!.trim().toLowerCase(),
       cin: parseInt(this.formInscrireCandidat.get('cin')!.value!),
-      password: this.formInscrireCandidat.get('mdp')!.value!,
+      password: this.formInscrireCandidat.get('mdp')!.value!.trim(),
       type: "candidat"
     }
 
@@ -138,8 +138,8 @@ export class DetailsFormationComponent implements OnInit {
       this.formConnecterCandidat.markAllAsTouched();
       return
     }
-    let email = this.formConnecterCandidat.get('email')!.value!;
-    let password = this.formConnecterCandidat.get('mdp')!.value!;
+    let email = this.formConnecterCandidat.get('email')!.value!.trim().toLowerCase();
+    let password = this.formConnecterCandidat.get('mdp')!.value!.trim();
     this.candidatService.login(email, password).subscribe({
       next: (res) => {
         if (!this.sessionAChanger.candidats.includes(res.user.id!) && this.sessionAChanger.candidats.length < 15)
@@ -151,8 +151,5 @@ export class DetailsFormationComponent implements OnInit {
       }
     })
   }
-
-
-
 
 }

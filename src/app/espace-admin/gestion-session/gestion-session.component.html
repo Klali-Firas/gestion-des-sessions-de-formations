@@ -1,1 +1,81 @@
-<p>gestion-session works!</p>
+<div class="row p-5 g-3" *ngIf="formation">
+    <div class="col-12 col-md-6  ">
+        <div>
+            <img [src]="formation.imageRefernce" alt="" class="d-block w-100 rounded">
+        </div>
+    </div>
+    <!--mt-3 ms-md-3 mt-md-0 -->
+    <div class="col-12  col-md-6 ">
+        <div class="p-4 details-card">
+            <!-- <p>{{formation.categorie}} </p> -->
+            <h1>{{formation.titre}} </h1>
+            <h6>Niveau: <p class="d-inline fw-bold">{{formation.difficulte}}</p>
+            </h6>
+            <h5>{{formation.description}}</h5>
+            <p>{{formation.programme}}</p>
+            <h6>{{"Volume Horaire: "+formation.chargeHoraire+" Heures"}} </h6>
+            <h6>Tags:</h6>
+            <div class="row"><span *ngFor="let tag of formation.tags" class="w-auto mt-2">{{tag}}</span></div>
+            <div class="details-card p-2 mt-2" *ngFor="let session of sessions;let i=index">
+                <h2>{{"session "+(i+1)}}</h2>
+                <p>{{"Date Debut: "+formatDate(session.dateDeb)}}</p>
+                <p>{{"Date Fin: "+formatDate(session.dateFin)}}</p>
+                <p>{{session.planning}}</p>
+                <p>{{"Participants: "+session.candidats.length+"/15"}}</p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="text-center" style="position: fixed;bottom: 20px;right: 20px;">
+    <button class="btn btn-primary rounded-circle" (click)="togglePopUp()"
+        style="width: 50px;height: 50px;padding: 0; font-size: 2rem;font-weight: 500;">+</button>
+</div>
+<div class="d-flex justify-content-center align-items-center vw-100 vh-100 fixed-top zindex-popover bg-dark"
+    *ngIf="creatingNewSession" (click)="togglePopUp()" style="--bs-bg-opacity:0.6;backdrop-filter:blur(8px)">
+    <div class=" p-4   rounded text-center details-card" style="width:clamp(300px , 60vw , 500px);"
+        (click)="$event.stopPropagation()">
+        <div class=" d-flex flex-column justify-content-center align-items-center">
+            <h5 class=" mb-3">Creation d'une Session</h5>
+            <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()" class="w-100 text-start">
+
+                <ng-select [items]="formateurs" bindLabel="nomPrenom" bindValue="id" placeholder="Select formateurs"
+                    formControlName="formateurs" [multiple]="true" [searchable]="true">
+                </ng-select>
+                <div *ngIf="sessionForm.controls['formateurs'].invalid && sessionForm.controls['formateurs'].touched"
+                    class="invalid-feedback">
+                    Ce champ est obligatoire!
+                </div>
+
+                <label for="dateDeb">Date de début</label>
+                <input (change)="resetFinDate()" [min]="ISOToday.substring(0,ISOToday.indexOf('.')-3)"
+                    type="datetime-local" id="dateDeb" class="form-control details-card" formControlName="dateDeb">
+                <div *ngIf="sessionForm.controls['dateDeb'].invalid && sessionForm.controls['dateDeb'].touched"
+                    class="invalid-feedback">
+                    Ce champ est obligatoire!
+                </div>
+
+                <label for="dateFin">Date de fin</label>
+                <input [attr.min]="sessionForm.get('dateDeb')!.value" type="datetime-local" id="dateFin"
+                    class="form-control details-card" formControlName="dateFin">
+                <div *ngIf="sessionForm.controls['dateFin'].invalid && sessionForm.controls['dateFin'].touched"
+                    class="invalid-feedback">
+                    Ce champ est obligatoire!
+                </div>
+
+                <label for="planning">Planning</label>
+                <input type="text" id="planning" class="form-control details-card" formControlName="planning">
+                <div *ngIf="sessionForm.controls['planning'].invalid && sessionForm.controls['planning'].touched"
+                    class="invalid-feedback">
+                    Ce champ est obligatoire!
+                </div>
+                <div class="w-100 text-center mt-2">
+                    <button type="submit" class="btn btn-primary" [disabled]="this.sessionForm.invalid">Submit</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>

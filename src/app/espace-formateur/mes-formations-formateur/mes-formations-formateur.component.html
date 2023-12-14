@@ -1,6 +1,6 @@
 <div *ngIf="sessions && formations" class="row g-3 p-3 justify-content-center">
     <div *ngFor="let session of sessions" class=" col-12 col-xl-3 col-md-4 col-sm-6"
-        (click)="navigateToSessionDetails(this.session.id.toString())">
+        (click)="navigateToSessionDetails(this.session.id!.toString())">
         <div class="p-2 details-card h-100 pointer" role="button">
             <img [src]="formations[session.formation].imageRefernce" [alt]="formations[session.formation].titre"
                 class="w-100 rounded">

@@ -1,5 +1,5 @@
 export interface Session {
-    id: number;
+    id?: number;
     formation: number;
     formateurs: number[];
     candidats: number[];

@@ -24,4 +24,7 @@ export class SessionService {
   updateSession(id: string, body: any) {
     return this.http.put(`${this.apiUrl}/${id}`, body);
   }
+  addSession(body: any) {
+    return this.http.post(`${this.apiUrl}`, body);
+  }
 }

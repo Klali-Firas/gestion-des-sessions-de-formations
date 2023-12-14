@@ -8,8 +8,8 @@ import { AccueilComponent } from './espace-public/accueil/accueil.component';
 import { FormationsComponent } from './espace-public/formations/formations.component';
 import { DetailsFormationComponent } from './espace-public/details-formation/details-formation.component';
 import { ShellComponent } from './espace-public/shell/shell.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 import { NavCandidatComponent } from './espace-candidat/nav-candidat/nav-candidat.component';
 import { MesFormationsComponent } from './espace-candidat/mes-formations/mes-formations.component';
 import { ShellCandidatComponent } from './espace-candidat/shell-candidat/shell-candidat.component';
@@ -25,6 +25,7 @@ import { GestionFormationsComponent } from './espace-admin/gestion-formations/ge
 import { ModifierCandidatComponent } from './espace-admin/modifier-candidat/modifier-candidat.component';
 import { ModifierFormateurComponent } from './espace-admin/modifier-formateur/modifier-formateur.component';
 import { GestionSessionComponent } from './espace-admin/gestion-session/gestion-session.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -54,9 +55,11 @@ import { GestionSessionComponent } from './espace-admin/gestion-session/gestion-
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    NgSelectModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, TitleCasePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
