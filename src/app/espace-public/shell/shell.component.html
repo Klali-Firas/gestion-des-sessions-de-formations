@@ -1,4 +1,9 @@
-<app-nav-public></app-nav-public>
-<div class=' mt-5 pt-5'>
-    <router-outlet></router-outlet>
+<div style="min-height: 100vh;
+  display: flex;
+  flex-direction: column;">
+    <app-nav-public></app-nav-public>
+    <div class=' mt-5 py-5'>
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer-public style="margin-top: auto;"></app-footer-public>
 </div>

@@ -1,29 +1,3 @@
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Titre</th>
-            <th>Description</th>
-            <th>Charge Horaire</th>
-            <th>Programme</th>
-            <th>Difficulté</th>
-            <th>Tags</th>
-            <th>Categories</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let formation of formations">
-            <th>{{formation.id}}</th>
-            <td> {{formation.titre}} </td>
-            <td> {{formation.description}} </td>
-            <td> {{formation.chargeHoraire}} </td>
-            <td> {{formation.programme}} </td>
-            <td> {{formation.difficulte}} </td>
-            <td><ng-container *ngFor="let tag of formation.tags">{{tag}}</ng-container> </td>
-            <td><ng-container *ngFor="let cat of formation.categorie">{{cat}}</ng-container></td>
-        </tr>
-    </tbody>
-</table>
 <div *ngFor="let cat of categories">
     <h2>{{cat}} </h2>
 

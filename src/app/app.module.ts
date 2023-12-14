@@ -26,6 +26,7 @@ import { ModifierCandidatComponent } from './espace-admin/modifier-candidat/modi
 import { ModifierFormateurComponent } from './espace-admin/modifier-formateur/modifier-formateur.component';
 import { GestionSessionComponent } from './espace-admin/gestion-session/gestion-session.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { FooterPublicComponent } from './espace-public/footer-public/footer-public.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     GestionFormationsComponent,
     ModifierCandidatComponent,
     ModifierFormateurComponent,
-    GestionSessionComponent
+    GestionSessionComponent,
+    FooterPublicComponent
   ],
   imports: [
     BrowserModule,

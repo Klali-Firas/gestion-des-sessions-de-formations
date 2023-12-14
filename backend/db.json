@@ -1,44 +1,4 @@
 {
-  "candidats": [
-    {
-      "id": 1,
-      "nom": "Dupont",
-      "prenom": "Jean",
-      "email": "jean.dupont@example.com",
-      "cin": 12345678,
-      "mdp": "password123"
-    },
-    {
-      "id": 2,
-      "nom": "Martin",
-      "prenom": "Sophie",
-      "email": "sophie.martin@example.com",
-      "cin": 87654321,
-      "mdp": "password456"
-    }
-  ],
-  "formateurs": [
-    {
-      "id": 1,
-      "nom": "Durand",
-      "prenom": "Pierre",
-      "email": "pierre.durand@example.com",
-      "tel": 987654321,
-      "cin": 11111111,
-      "specialite": "Informatique",
-      "mdp": "password456"
-    },
-    {
-      "id": 2,
-      "nom": "Lefevre",
-      "prenom": "Marie",
-      "email": "marie.lefevre@example.com",
-      "tel": 123456789,
-      "cin": 22222222,
-      "specialite": "Mathématiques",
-      "mdp": "password789"
-    }
-  ],
   "formations": [
     {
       "id": 1,
@@ -109,29 +69,6 @@
         "html"
       ],
       "id": 4
-    },
-    {
-      "titre": "React Js Pour Tous",
-      "difficulte": "avancé",
-      "description": "Maîtrisez REACT avec les HOOKS, REDUX, FIREBASE, APIs etc dans des exercices simples et des applications codées de A à Z",
-      "imageRefernce": "https://elitex.systems/blog/wp-content/uploads/2021/04/react-advantage.jpg",
-      "programme": "La formation en Français qui vous permet de Maîtriser React JS, (avec les HOOKS), REDUX, FIREBASE, APIs et autres avec des exercices simples, accessibles à tous, ainsi qu'avec la réalisation d'une vraie application React JS qu'on codera ensemble, étape par étape, du début jusqu'à son déploiement sur Firebase !",
-      "chargeHoraire": 45,
-      "categorie": [
-        "développement_web",
-        "informatique",
-        "frontend"
-      ],
-      "tags": [
-        "React",
-        "Javascript",
-        "Redux",
-        "Html",
-        "Css",
-        "Router",
-        "Frontend"
-      ],
-      "id": 5
     }
   ],
   "sessions": [
@@ -268,6 +205,12 @@
       "specialite": "Physique, Quntom",
       "type": "formateur",
       "id": 9
+    },
+    {
+      "email": "admin@isetr.com",
+      "password": "$2a$10$vwiCQcJCNDvjHv6i58rfReKVy.CcQRafd489WdpMFmDUg2jpbW11K",
+      "type": "admin",
+      "id": 10
     }
   ]
 }

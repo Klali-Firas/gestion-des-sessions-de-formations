@@ -1,330 +1,317 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <title>My Website</title> -->
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top .fixed-top" style="-webkit-backdrop-filter: blur(8px);
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top .fixed-top" style="-webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);--bs-bg-opacity:0.75;">
-        <div class="container">
-            <a class="navbar-brand">Gestion des Sessoins</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto" style="--bs-nav-link-color:white">
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="accueil" data-bs-toggle="collapse"
-                            data-bs-target=".navbar-collapse.show">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="formations" data-bs-toggle="collapse"
-                            data-bs-target=".navbar-collapse.show">Formations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" (click)="toggleCandidatPopUp()" data-bs-toggle="collapse"
-                            data-bs-target=".navbar-collapse.show">Espace Candidats</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" (click)="toggleFormateurPopUp()" data-bs-toggle="collapse"
-                            data-bs-target=".navbar-collapse.show">Espace Formateurs</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="container">
+        <a class="navbar-brand">Gestion des Sessoins</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto" style="--bs-nav-link-color:white">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="accueil" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="formations" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show">Formations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="toggleCandidatPopUp()" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show">Espace Candidats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="toggleFormateurPopUp()" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse.show">Espace Formateurs</a>
+                </li>
+            </ul>
         </div>
-    </nav>
-    <div class="d-flex justify-content-center align-items-center vw-100 vh-100 fixed-top zindex-popover bg-dark"
-        *ngIf="candidat" (click)="toggleCandidatPopUp()" style="--bs-bg-opacity:0.6;backdrop-filter:blur(8px)">
-        <div class=" p-4  rounded text-center details-card" style="width:clamp(300px , 75vw , 750px);"
-            (click)="$event.stopPropagation()">
-            <div class=" d-flex flex-column justify-content-center align-items-center">
-                <h3 class=" mb-3 ">{{inscrireOuConnecter? "Inscrire":"Connecter"}}</h3>
-                <div class="holder mb-3" [ngClass]="{'holder-clicked': inscrireOuConnecter} "
-                    (click)="inscrireOuConnecter=!inscrireOuConnecter">
-                    <div class="button" [ngClass]="{'button-clicked': inscrireOuConnecter}"></div>
-                </div>
-                <form [formGroup]="formInscrireCandidat" (ngSubmit)="addCandidat()" class="w-100 text-start"
-                    *ngIf="inscrireOuConnecter">
-                    <div class="mb-3"><input type="text" formControlName="nom" class="form-control  details-card"
-                            placeholder="Votre Nom..."
-                            [ngClass]="{'is-invalid': formInscrireCandidat.controls['nom'].invalid && formInscrireCandidat.controls['nom'].touched,
+    </div>
+</nav>
+<div class="d-flex justify-content-center align-items-center vw-100 vh-100 fixed-top zindex-popover bg-dark"
+    *ngIf="candidat" (click)="toggleCandidatPopUp()" style="--bs-bg-opacity:0.6;backdrop-filter:blur(8px)">
+    <div class=" p-4  rounded text-center details-card" style="width:clamp(300px , 75vw , 750px);"
+        (click)="$event.stopPropagation()">
+        <div class=" d-flex flex-column justify-content-center align-items-center">
+            <h3 class=" mb-3 ">{{inscrireOuConnecter? "Inscrire":"Connecter"}}</h3>
+            <div class="holder mb-3" [ngClass]="{'holder-clicked': inscrireOuConnecter} "
+                (click)="inscrireOuConnecter=!inscrireOuConnecter">
+                <div class="button" [ngClass]="{'button-clicked': inscrireOuConnecter}"></div>
+            </div>
+            <form [formGroup]="formInscrireCandidat" (ngSubmit)="addCandidat()" class="w-100 text-start"
+                *ngIf="inscrireOuConnecter">
+                <div class="mb-3"><input type="text" formControlName="nom" class="form-control  details-card"
+                        placeholder="Votre Nom..."
+                        [ngClass]="{'is-invalid': formInscrireCandidat.controls['nom'].invalid && formInscrireCandidat.controls['nom'].touched,
                     'is-valid': formInscrireCandidat.controls['nom'].valid && formInscrireCandidat.controls['nom'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['nom'].invalid && formInscrireCandidat.controls['nom'].touched">
-                            Ce champ est obligatoire!
-                        </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['nom'].invalid && formInscrireCandidat.controls['nom'].touched">
+                        Ce champ est obligatoire!
                     </div>
-                    <div class="mb-3"><input type="text" formControlName="prenom" class="form-control  details-card"
-                            placeholder="Votre Prénom..."
-                            [ngClass]="{'is-invalid': formInscrireCandidat.controls['prenom'].invalid && formInscrireCandidat.controls['prenom'].touched,
-                    'is-valid': formInscrireCandidat.controls['prenom'].valid && formInscrireCandidat.controls['prenom'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['prenom'].invalid && formInscrireCandidat.controls['prenom'].touched">
-                            Ce champ est obligatoire!
-                        </div>
-                    </div>
-                    <div class="mb-3"><input type="text" formControlName="email" class="form-control  details-card"
-                            placeholder="Votre Email..."
-                            [ngClass]="{'is-invalid': formInscrireCandidat.controls['email'].invalid && formInscrireCandidat.controls['email'].touched,
-                    'is-valid': formInscrireCandidat.controls['email'].valid && formInscrireCandidat.controls['email'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['email'].invalid && formInscrireCandidat.controls['email'].touched && !formInscrireCandidat.controls['email'].hasError('pattern')">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['email'].hasError('pattern') && formInscrireCandidat.controls['email'].touched">
-                            Cette email est invalid!
-                        </div>
-                    </div>
-                    <div class="mb-3"><input type="number" formControlName="cin" class="form-control  details-card"
-                            placeholder="Votre CIN..."
-                            [ngClass]="{'is-invalid': formInscrireCandidat.controls['cin'].invalid && formInscrireCandidat.controls['cin'].touched,
-                    'is-valid': formInscrireCandidat.controls['cin'].valid && formInscrireCandidat.controls['cin'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['cin'].invalid && formInscrireCandidat.controls['cin'].touched && !formInscrireCandidat.controls['cin'].errors?.['pattern']">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['cin'].errors?.['pattern'] && formInscrireCandidat.controls['cin'].touched">
-                            Le CIN doit comporter au moins 8 chiffres!
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" formControlName="mdp" class="form-control  details-card"
-                            placeholder="Mot de pass..."
-                            [ngClass]="{'is-invalid': formInscrireCandidat.controls['mdp'].invalid && formInscrireCandidat.controls['mdp'].touched,
-                    'is-valid': formInscrireCandidat.controls['mdp'].valid && formInscrireCandidat.controls['mdp'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['mdp'].invalid && formInscrireCandidat.controls['mdp'].touched &&!formInscrireCandidat.controls['mdp'].errors?.['minlength']">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['mdp'].errors?.['minlength'] && formInscrireCandidat.controls['mdp'].touched">
-                            Le mot de passe doit comporter au moins 8 caractères!
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" formControlName="cmdp" class="form-control  details-card"
-                            placeholder="Confirmer le mot de pass..."
-                            [ngClass]="{'is-invalid': formInscrireCandidat.controls['cmdp'].invalid && formInscrireCandidat.controls['cmdp'].touched,
-                    'is-valid': formInscrireCandidat.controls['cmdp'].valid && formInscrireCandidat.controls['cmdp'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['cmdp'].invalid && formInscrireCandidat.controls['cmdp'].touched && !formInscrireCandidat.controls['cmdp'].hasError('confirmedValidator') && !formInscrireCandidat.controls['cmdp'].errors?.['minlength']">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['cmdp'].errors?.['minlength'] && formInscrireCandidat.controls['cmdp'].touched">
-                            Le mot de passe doit comporter au moins 8 caractères!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireCandidat.controls['cmdp'].hasError('confirmedValidator') && formInscrireCandidat.controls['cmdp'].touched">
-                            Les mots de passe ne correspondent pas!
-                        </div>
-
-
-                    </div>
-                    <div class="text-center">
-                        <button type=" submit" class="btn btn-primary">Inscrire</button>
-                    </div>
-                </form>
-                <!-- Login Form -->
-                <form class="w-100 text-start" [formGroup]="formConnecterCandidat" (ngSubmit)="loginCandidat()"
-                    *ngIf="!inscrireOuConnecter">
-                    <div class="mb-3"><input type="text" formControlName="email" class="form-control  details-card"
-                            placeholder="Votre Email..."
-                            [ngClass]="{'is-invalid': formConnecterCandidat.controls['email'].invalid && formConnecterCandidat.controls['email'].touched,
-                                        'is-valid': formConnecterCandidat.controls['email'].valid && formConnecterCandidat.controls['email'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formConnecterCandidat.controls['email'].invalid && formConnecterCandidat.controls['email'].touched && !formConnecterCandidat.controls['email'].hasError('pattern')">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formConnecterCandidat.controls['email'].hasError('pattern') && formConnecterCandidat.controls['email'].touched">
-                            Cette email est invalid!
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" formControlName="mdp" class="form-control  details-card"
-                            placeholder="Mot de pass..."
-                            [ngClass]="{'is-invalid': formConnecterCandidat.controls['mdp'].invalid && formConnecterCandidat.controls['mdp'].touched,
-                                        'is-valid': formConnecterCandidat.controls['mdp'].valid && formConnecterCandidat.controls['mdp'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formConnecterCandidat.controls['mdp'].invalid && formConnecterCandidat.controls['mdp'].touched &&!formConnecterCandidat.controls['mdp'].errors?.['minlength']">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formConnecterCandidat.controls['mdp'].errors?.['minlength'] && formConnecterCandidat.controls['mdp'].touched">
-                            Le mot de passe doit comporter au moins 8 caractères!
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <button type=" submit" class="btn btn-primary">Se Connecter</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-    <!-- Formateurs side -->
-    <div class="d-flex justify-content-center align-items-center vw-100 vh-100 fixed-top zindex-popover bg-dark"
-        *ngIf="formateur" (click)="toggleFormateurPopUp()" style="--bs-bg-opacity:0.6;backdrop-filter:blur(8px)">
-        <div class=" p-4  rounded text-center details-card" style="width:clamp(300px , 75vw , 750px);"
-            (click)="$event.stopPropagation()">
-            <div class=" d-flex flex-column justify-content-center align-items-center">
-                <h3 class=" mb-3 ">{{inscrireOuConnecter? "Inscrire":"Connecter"}}</h3>
-                <div class="holder mb-3" [ngClass]="{'holder-clicked': inscrireOuConnecter} "
-                    (click)="inscrireOuConnecter=!inscrireOuConnecter">
-                    <div class="button" [ngClass]="{'button-clicked': inscrireOuConnecter}"></div>
                 </div>
-                <form [formGroup]="formInscrireFormateur" (ngSubmit)="addFormateur()" class="w-100 text-start"
-                    *ngIf="inscrireOuConnecter">
-                    <div class="mb-3"><input type="text" formControlName="nom" class="form-control  details-card"
-                            placeholder="Votre Nom..."
-                            [ngClass]="{'is-invalid': formInscrireFormateur.controls['nom'].invalid && formInscrireFormateur.controls['nom'].touched,
-                            'is-valid': formInscrireFormateur.controls['nom'].valid && formInscrireFormateur.controls['nom'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['nom'].invalid && formInscrireFormateur.controls['nom'].touched">
-                            Ce champ est obligatoire!
-                        </div>
+                <div class="mb-3"><input type="text" formControlName="prenom" class="form-control  details-card"
+                        placeholder="Votre Prénom..."
+                        [ngClass]="{'is-invalid': formInscrireCandidat.controls['prenom'].invalid && formInscrireCandidat.controls['prenom'].touched,
+                    'is-valid': formInscrireCandidat.controls['prenom'].valid && formInscrireCandidat.controls['prenom'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['prenom'].invalid && formInscrireCandidat.controls['prenom'].touched">
+                        Ce champ est obligatoire!
                     </div>
-                    <div class="mb-3"><input type="text" formControlName="prenom" class="form-control  details-card"
-                            placeholder="Votre Prénom..."
-                            [ngClass]="{'is-invalid': formInscrireFormateur.controls['prenom'].invalid && formInscrireFormateur.controls['prenom'].touched,
-                            'is-valid': formInscrireFormateur.controls['prenom'].valid && formInscrireFormateur.controls['prenom'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['prenom'].invalid && formInscrireFormateur.controls['prenom'].touched">
-                            Ce champ est obligatoire!
-                        </div>
+                </div>
+                <div class="mb-3"><input type="text" formControlName="email" class="form-control  details-card"
+                        placeholder="Votre Email..."
+                        [ngClass]="{'is-invalid': formInscrireCandidat.controls['email'].invalid && formInscrireCandidat.controls['email'].touched,
+                    'is-valid': formInscrireCandidat.controls['email'].valid && formInscrireCandidat.controls['email'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['email'].invalid && formInscrireCandidat.controls['email'].touched && !formInscrireCandidat.controls['email'].hasError('pattern')">
+                        Ce champ est obligatoire!
                     </div>
-                    <div class="mb-3"><input type="text" formControlName="email" class="form-control  details-card"
-                            placeholder="Votre Email..."
-                            [ngClass]="{'is-invalid': formInscrireFormateur.controls['email'].invalid && formInscrireFormateur.controls['email'].touched,
-                            'is-valid': formInscrireFormateur.controls['email'].valid && formInscrireFormateur.controls['email'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['email'].invalid && formInscrireFormateur.controls['email'].touched && !formInscrireFormateur.controls['email'].hasError('pattern')">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['email'].hasError('pattern') && formInscrireFormateur.controls['email'].touched">
-                            Cette email est invalid!
-                        </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['email'].hasError('pattern') && formInscrireCandidat.controls['email'].touched">
+                        Cette email est invalid!
                     </div>
-                    <div class="mb-3"><input type="number" formControlName="cin" class="form-control  details-card"
-                            placeholder="Votre CIN..."
-                            [ngClass]="{'is-invalid': formInscrireFormateur.controls['cin'].invalid && formInscrireFormateur.controls['cin'].touched,
-                            'is-valid': formInscrireFormateur.controls['cin'].valid && formInscrireFormateur.controls['cin'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['cin'].invalid && formInscrireFormateur.controls['cin'].touched && !formInscrireFormateur.controls['cin'].errors?.['pattern']">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['cin'].errors?.['pattern'] && formInscrireFormateur.controls['cin'].touched">
-                            Le CIN doit comporter au moins 8 chiffres!
-                        </div>
+                </div>
+                <div class="mb-3"><input type="number" formControlName="cin" class="form-control  details-card"
+                        placeholder="Votre CIN..."
+                        [ngClass]="{'is-invalid': formInscrireCandidat.controls['cin'].invalid && formInscrireCandidat.controls['cin'].touched,
+                    'is-valid': formInscrireCandidat.controls['cin'].valid && formInscrireCandidat.controls['cin'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['cin'].invalid && formInscrireCandidat.controls['cin'].touched && !formInscrireCandidat.controls['cin'].errors?.['pattern']">
+                        Ce champ est obligatoire!
                     </div>
-                    <div class="mb-3"><input type="number" formControlName="tel" class="form-control  details-card"
-                            placeholder="Votre Numero Telephone..."
-                            [ngClass]="{'is-invalid': formInscrireFormateur.controls['tel'].invalid && formInscrireFormateur.controls['tel'].touched,
-                                                'is-valid': formInscrireFormateur.controls['tel'].valid && formInscrireFormateur.controls['tel'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['tel'].invalid && formInscrireFormateur.controls['tel'].touched && !formInscrireFormateur.controls['tel'].errors?.['pattern']">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['tel'].errors?.['pattern'] && formInscrireFormateur.controls['tel'].touched">
-                            Le numero telephone doit comporter au moins 8 chiffres!
-                        </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['cin'].errors?.['pattern'] && formInscrireCandidat.controls['cin'].touched">
+                        Le CIN doit comporter au moins 8 chiffres!
                     </div>
-                    <div class="mb-3"><input type="text" formControlName="specialite" class="form-control  details-card"
-                            placeholder="Votre Specialite..."
-                            [ngClass]="{'is-invalid': formInscrireFormateur.controls['specialite'].invalid && formInscrireFormateur.controls['specialite'].touched,
-                                                'is-valid': formInscrireFormateur.controls['specialite'].valid && formInscrireFormateur.controls['specialite'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['specialite'].invalid && formInscrireFormateur.controls['specialite'].touched">
-                            Ce champ est obligatoire!
-                        </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" formControlName="mdp" class="form-control  details-card"
+                        placeholder="Mot de pass..."
+                        [ngClass]="{'is-invalid': formInscrireCandidat.controls['mdp'].invalid && formInscrireCandidat.controls['mdp'].touched,
+                    'is-valid': formInscrireCandidat.controls['mdp'].valid && formInscrireCandidat.controls['mdp'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['mdp'].invalid && formInscrireCandidat.controls['mdp'].touched &&!formInscrireCandidat.controls['mdp'].errors?.['minlength']">
+                        Ce champ est obligatoire!
                     </div>
-                    <div class="mb-3">
-                        <input type="password" formControlName="mdp" class="form-control  details-card"
-                            placeholder="Mot de pass..."
-                            [ngClass]="{'is-invalid': formInscrireFormateur.controls['mdp'].invalid && formInscrireFormateur.controls['mdp'].touched,
-                            'is-valid': formInscrireFormateur.controls['mdp'].valid && formInscrireFormateur.controls['mdp'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['mdp'].invalid && formInscrireFormateur.controls['mdp'].touched &&!formInscrireFormateur.controls['mdp'].errors?.['minlength']">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['mdp'].errors?.['minlength'] && formInscrireFormateur.controls['mdp'].touched">
-                            Le mot de passe doit comporter au moins 8 caractères!
-                        </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['mdp'].errors?.['minlength'] && formInscrireCandidat.controls['mdp'].touched">
+                        Le mot de passe doit comporter au moins 8 caractères!
                     </div>
-                    <div class="mb-3">
-                        <input type="password" formControlName="cmdp" class="form-control  details-card"
-                            placeholder="Confirmer le mot de pass..."
-                            [ngClass]="{'is-invalid': formInscrireFormateur.controls['cmdp'].invalid && formInscrireFormateur.controls['cmdp'].touched,
-                            'is-valid': formInscrireFormateur.controls['cmdp'].valid && formInscrireFormateur.controls['cmdp'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['cmdp'].invalid && formInscrireFormateur.controls['cmdp'].touched && !formInscrireFormateur.controls['cmdp'].hasError('confirmedValidator') && !formInscrireFormateur.controls['cmdp'].errors?.['minlength']">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['cmdp'].errors?.['minlength'] && formInscrireFormateur.controls['cmdp'].touched">
-                            Le mot de passe doit comporter au moins 8 caractères!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formInscrireFormateur.controls['cmdp'].hasError('confirmedValidator') && formInscrireFormateur.controls['cmdp'].touched">
-                            Les mots de passe ne correspondent pas!
-                        </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" formControlName="cmdp" class="form-control  details-card"
+                        placeholder="Confirmer le mot de pass..."
+                        [ngClass]="{'is-invalid': formInscrireCandidat.controls['cmdp'].invalid && formInscrireCandidat.controls['cmdp'].touched,
+                    'is-valid': formInscrireCandidat.controls['cmdp'].valid && formInscrireCandidat.controls['cmdp'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['cmdp'].invalid && formInscrireCandidat.controls['cmdp'].touched && !formInscrireCandidat.controls['cmdp'].hasError('confirmedValidator') && !formInscrireCandidat.controls['cmdp'].errors?.['minlength']">
+                        Ce champ est obligatoire!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['cmdp'].errors?.['minlength'] && formInscrireCandidat.controls['cmdp'].touched">
+                        Le mot de passe doit comporter au moins 8 caractères!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireCandidat.controls['cmdp'].hasError('confirmedValidator') && formInscrireCandidat.controls['cmdp'].touched">
+                        Les mots de passe ne correspondent pas!
+                    </div>
 
 
+                </div>
+                <div class="text-center">
+                    <button type=" submit" class="btn btn-primary">Inscrire</button>
+                </div>
+            </form>
+            <!-- Login Form -->
+            <form class="w-100 text-start" [formGroup]="formConnecterCandidat" (ngSubmit)="loginCandidat()"
+                *ngIf="!inscrireOuConnecter">
+                <div class="mb-3"><input type="text" formControlName="email" class="form-control  details-card"
+                        placeholder="Votre Email..."
+                        [ngClass]="{'is-invalid': formConnecterCandidat.controls['email'].invalid && formConnecterCandidat.controls['email'].touched,
+                                        'is-valid': formConnecterCandidat.controls['email'].valid && formConnecterCandidat.controls['email'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formConnecterCandidat.controls['email'].invalid && formConnecterCandidat.controls['email'].touched && !formConnecterCandidat.controls['email'].hasError('pattern')">
+                        Ce champ est obligatoire!
                     </div>
-                    <div class="text-center">
-                        <button type=" submit" class="btn btn-primary">Inscrire</button>
+                    <div class="invalid-feedback"
+                        *ngIf="formConnecterCandidat.controls['email'].hasError('pattern') && formConnecterCandidat.controls['email'].touched">
+                        Cette email est invalid!
                     </div>
-                </form>
-                <!-- Login Form -->
-                <form class="w-100 text-start" [formGroup]="formConnecterFormateur" (ngSubmit)="loginFormateur()"
-                    *ngIf="!inscrireOuConnecter">
-                    <div class="mb-3"><input type="text" formControlName="email" class="form-control  details-card"
-                            placeholder="Votre Email..."
-                            [ngClass]="{'is-invalid': formConnecterFormateur.controls['email'].invalid && formConnecterFormateur.controls['email'].touched,
-                                                'is-valid': formConnecterFormateur.controls['email'].valid && formConnecterFormateur.controls['email'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formConnecterFormateur.controls['email'].invalid && formConnecterFormateur.controls['email'].touched && !formConnecterFormateur.controls['email'].hasError('pattern')">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formConnecterFormateur.controls['email'].hasError('pattern') && formConnecterFormateur.controls['email'].touched">
-                            Cette email est invalid!
-                        </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" formControlName="mdp" class="form-control  details-card"
+                        placeholder="Mot de pass..."
+                        [ngClass]="{'is-invalid': formConnecterCandidat.controls['mdp'].invalid && formConnecterCandidat.controls['mdp'].touched,
+                                        'is-valid': formConnecterCandidat.controls['mdp'].valid && formConnecterCandidat.controls['mdp'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formConnecterCandidat.controls['mdp'].invalid && formConnecterCandidat.controls['mdp'].touched &&!formConnecterCandidat.controls['mdp'].errors?.['minlength']">
+                        Ce champ est obligatoire!
                     </div>
-                    <div class="mb-3">
-                        <input type="password" formControlName="mdp" class="form-control  details-card"
-                            placeholder="Mot de pass..."
-                            [ngClass]="{'is-invalid': formConnecterFormateur.controls['mdp'].invalid && formConnecterFormateur.controls['mdp'].touched,
-                                                'is-valid': formConnecterFormateur.controls['mdp'].valid && formConnecterFormateur.controls['mdp'].touched}">
-                        <div class="invalid-feedback"
-                            *ngIf="formConnecterFormateur.controls['mdp'].invalid && formConnecterFormateur.controls['mdp'].touched &&!formConnecterFormateur.controls['mdp'].errors?.['minlength']">
-                            Ce champ est obligatoire!
-                        </div>
-                        <div class="invalid-feedback"
-                            *ngIf="formConnecterFormateur.controls['mdp'].errors?.['minlength'] && formConnecterFormateur.controls['mdp'].touched">
-                            Le mot de passe doit comporter au moins 8 caractères!
-                        </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formConnecterCandidat.controls['mdp'].errors?.['minlength'] && formConnecterCandidat.controls['mdp'].touched">
+                        Le mot de passe doit comporter au moins 8 caractères!
                     </div>
-                    <div class="text-center">
-                        <button type=" submit" class="btn btn-primary">Se Connecter</button>
-                    </div>
-                </form>
+                </div>
+                <div class="text-center">
+                    <button type=" submit" class="btn btn-primary">Se Connecter</button>
+                </div>
+            </form>
 
-            </div>
         </div>
     </div>
-</body>
+</div>
+<!-- Formateurs side -->
+<div class="d-flex justify-content-center align-items-center vw-100 vh-100 fixed-top zindex-popover bg-dark"
+    *ngIf="formateur" (click)="toggleFormateurPopUp()" style="--bs-bg-opacity:0.6;backdrop-filter:blur(8px)">
+    <div class=" p-4  rounded text-center details-card" style="width:clamp(300px , 75vw , 750px);"
+        (click)="$event.stopPropagation()">
+        <div class=" d-flex flex-column justify-content-center align-items-center">
+            <h3 class=" mb-3 ">{{inscrireOuConnecter? "Inscrire":"Connecter"}}</h3>
+            <div class="holder mb-3" [ngClass]="{'holder-clicked': inscrireOuConnecter} "
+                (click)="inscrireOuConnecter=!inscrireOuConnecter">
+                <div class="button" [ngClass]="{'button-clicked': inscrireOuConnecter}"></div>
+            </div>
+            <form [formGroup]="formInscrireFormateur" (ngSubmit)="addFormateur()" class="w-100 text-start"
+                *ngIf="inscrireOuConnecter">
+                <div class="mb-3"><input type="text" formControlName="nom" class="form-control  details-card"
+                        placeholder="Votre Nom..."
+                        [ngClass]="{'is-invalid': formInscrireFormateur.controls['nom'].invalid && formInscrireFormateur.controls['nom'].touched,
+                            'is-valid': formInscrireFormateur.controls['nom'].valid && formInscrireFormateur.controls['nom'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['nom'].invalid && formInscrireFormateur.controls['nom'].touched">
+                        Ce champ est obligatoire!
+                    </div>
+                </div>
+                <div class="mb-3"><input type="text" formControlName="prenom" class="form-control  details-card"
+                        placeholder="Votre Prénom..."
+                        [ngClass]="{'is-invalid': formInscrireFormateur.controls['prenom'].invalid && formInscrireFormateur.controls['prenom'].touched,
+                            'is-valid': formInscrireFormateur.controls['prenom'].valid && formInscrireFormateur.controls['prenom'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['prenom'].invalid && formInscrireFormateur.controls['prenom'].touched">
+                        Ce champ est obligatoire!
+                    </div>
+                </div>
+                <div class="mb-3"><input type="text" formControlName="email" class="form-control  details-card"
+                        placeholder="Votre Email..."
+                        [ngClass]="{'is-invalid': formInscrireFormateur.controls['email'].invalid && formInscrireFormateur.controls['email'].touched,
+                            'is-valid': formInscrireFormateur.controls['email'].valid && formInscrireFormateur.controls['email'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['email'].invalid && formInscrireFormateur.controls['email'].touched && !formInscrireFormateur.controls['email'].hasError('pattern')">
+                        Ce champ est obligatoire!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['email'].hasError('pattern') && formInscrireFormateur.controls['email'].touched">
+                        Cette email est invalid!
+                    </div>
+                </div>
+                <div class="mb-3"><input type="number" formControlName="cin" class="form-control  details-card"
+                        placeholder="Votre CIN..."
+                        [ngClass]="{'is-invalid': formInscrireFormateur.controls['cin'].invalid && formInscrireFormateur.controls['cin'].touched,
+                            'is-valid': formInscrireFormateur.controls['cin'].valid && formInscrireFormateur.controls['cin'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['cin'].invalid && formInscrireFormateur.controls['cin'].touched && !formInscrireFormateur.controls['cin'].errors?.['pattern']">
+                        Ce champ est obligatoire!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['cin'].errors?.['pattern'] && formInscrireFormateur.controls['cin'].touched">
+                        Le CIN doit comporter au moins 8 chiffres!
+                    </div>
+                </div>
+                <div class="mb-3"><input type="number" formControlName="tel" class="form-control  details-card"
+                        placeholder="Votre Numero Telephone..."
+                        [ngClass]="{'is-invalid': formInscrireFormateur.controls['tel'].invalid && formInscrireFormateur.controls['tel'].touched,
+                                                'is-valid': formInscrireFormateur.controls['tel'].valid && formInscrireFormateur.controls['tel'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['tel'].invalid && formInscrireFormateur.controls['tel'].touched && !formInscrireFormateur.controls['tel'].errors?.['pattern']">
+                        Ce champ est obligatoire!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['tel'].errors?.['pattern'] && formInscrireFormateur.controls['tel'].touched">
+                        Le numero telephone doit comporter au moins 8 chiffres!
+                    </div>
+                </div>
+                <div class="mb-3"><input type="text" formControlName="specialite" class="form-control  details-card"
+                        placeholder="Votre Specialite..."
+                        [ngClass]="{'is-invalid': formInscrireFormateur.controls['specialite'].invalid && formInscrireFormateur.controls['specialite'].touched,
+                                                'is-valid': formInscrireFormateur.controls['specialite'].valid && formInscrireFormateur.controls['specialite'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['specialite'].invalid && formInscrireFormateur.controls['specialite'].touched">
+                        Ce champ est obligatoire!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" formControlName="mdp" class="form-control  details-card"
+                        placeholder="Mot de pass..."
+                        [ngClass]="{'is-invalid': formInscrireFormateur.controls['mdp'].invalid && formInscrireFormateur.controls['mdp'].touched,
+                            'is-valid': formInscrireFormateur.controls['mdp'].valid && formInscrireFormateur.controls['mdp'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['mdp'].invalid && formInscrireFormateur.controls['mdp'].touched &&!formInscrireFormateur.controls['mdp'].errors?.['minlength']">
+                        Ce champ est obligatoire!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['mdp'].errors?.['minlength'] && formInscrireFormateur.controls['mdp'].touched">
+                        Le mot de passe doit comporter au moins 8 caractères!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" formControlName="cmdp" class="form-control  details-card"
+                        placeholder="Confirmer le mot de pass..."
+                        [ngClass]="{'is-invalid': formInscrireFormateur.controls['cmdp'].invalid && formInscrireFormateur.controls['cmdp'].touched,
+                            'is-valid': formInscrireFormateur.controls['cmdp'].valid && formInscrireFormateur.controls['cmdp'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['cmdp'].invalid && formInscrireFormateur.controls['cmdp'].touched && !formInscrireFormateur.controls['cmdp'].hasError('confirmedValidator') && !formInscrireFormateur.controls['cmdp'].errors?.['minlength']">
+                        Ce champ est obligatoire!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['cmdp'].errors?.['minlength'] && formInscrireFormateur.controls['cmdp'].touched">
+                        Le mot de passe doit comporter au moins 8 caractères!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formInscrireFormateur.controls['cmdp'].hasError('confirmedValidator') && formInscrireFormateur.controls['cmdp'].touched">
+                        Les mots de passe ne correspondent pas!
+                    </div>
 
-</html>
+
+                </div>
+                <div class="text-center">
+                    <button type=" submit" class="btn btn-primary">Inscrire</button>
+                </div>
+            </form>
+            <!-- Login Form -->
+            <form class="w-100 text-start" [formGroup]="formConnecterFormateur" (ngSubmit)="loginFormateur()"
+                *ngIf="!inscrireOuConnecter">
+                <div class="mb-3"><input type="text" formControlName="email" class="form-control  details-card"
+                        placeholder="Votre Email..."
+                        [ngClass]="{'is-invalid': formConnecterFormateur.controls['email'].invalid && formConnecterFormateur.controls['email'].touched,
+                                                'is-valid': formConnecterFormateur.controls['email'].valid && formConnecterFormateur.controls['email'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formConnecterFormateur.controls['email'].invalid && formConnecterFormateur.controls['email'].touched && !formConnecterFormateur.controls['email'].hasError('pattern')">
+                        Ce champ est obligatoire!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formConnecterFormateur.controls['email'].hasError('pattern') && formConnecterFormateur.controls['email'].touched">
+                        Cette email est invalid!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" formControlName="mdp" class="form-control  details-card"
+                        placeholder="Mot de pass..."
+                        [ngClass]="{'is-invalid': formConnecterFormateur.controls['mdp'].invalid && formConnecterFormateur.controls['mdp'].touched,
+                                                'is-valid': formConnecterFormateur.controls['mdp'].valid && formConnecterFormateur.controls['mdp'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formConnecterFormateur.controls['mdp'].invalid && formConnecterFormateur.controls['mdp'].touched &&!formConnecterFormateur.controls['mdp'].errors?.['minlength']">
+                        Ce champ est obligatoire!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formConnecterFormateur.controls['mdp'].errors?.['minlength'] && formConnecterFormateur.controls['mdp'].touched">
+                        Le mot de passe doit comporter au moins 8 caractères!
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type=" submit" class="btn btn-primary">Se Connecter</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

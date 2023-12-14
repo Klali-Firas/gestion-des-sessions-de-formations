@@ -1,0 +1,52 @@
+<div class="row g-2 justify-content-center text-center">
+    <!-- <div class="col-12 col-sm-6">
+        <h5>Navigate</h5>
+    </div>
+    <div class="col-12 col-sm-6">
+        <h5>Developed by</h5>
+    </div> -->
+    <div style="font-size: 7pt; width: 80%; text-align: right;">
+        are you an admin ? <a (click)="togglePopUp()">Login</a></div>
+</div>
+<div class="d-flex justify-content-center align-items-center vw-100 vh-100 fixed-top zindex-popover bg-dark"
+    *ngIf="tryconnect" (click)="togglePopUp()" style="--bs-bg-opacity:0.6;backdrop-filter:blur(8px)">
+    <div class=" p-4  rounded text-center details-card" style="width:clamp(300px , 75vw , 750px);"
+        (click)="$event.stopPropagation()">
+        <div class=" d-flex flex-column justify-content-center align-items-center">
+            <h3 class=" mb-3 ">Login Admin</h3>
+            <form class="w-100 text-start" [formGroup]="formAdmin" (ngSubmit)="loginAdmin()">
+                <div class="mb-3"><input type="text" formControlName="email" class="form-control  details-card"
+                        placeholder="Votre Email..."
+                        [ngClass]="{'is-invalid': formAdmin.controls['email'].invalid && formAdmin.controls['email'].touched,
+                                                            'is-valid': formAdmin.controls['email'].valid && formAdmin.controls['email'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formAdmin.controls['email'].invalid && formAdmin.controls['email'].touched && !formAdmin.controls['email'].hasError('pattern')">
+                        Ce champ est obligatoire!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formAdmin.controls['email'].hasError('pattern') && formAdmin.controls['email'].touched">
+                        Cette email est invalid!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" formControlName="mdp" class="form-control  details-card"
+                        placeholder="Mot de pass..."
+                        [ngClass]="{'is-invalid': formAdmin.controls['mdp'].invalid && formAdmin.controls['mdp'].touched,
+                                                            'is-valid': formAdmin.controls['mdp'].valid && formAdmin.controls['mdp'].touched}">
+                    <div class="invalid-feedback"
+                        *ngIf="formAdmin.controls['mdp'].invalid && formAdmin.controls['mdp'].touched &&!formAdmin.controls['mdp'].errors?.['minlength']">
+                        Ce champ est obligatoire!
+                    </div>
+                    <div class="invalid-feedback"
+                        *ngIf="formAdmin.controls['mdp'].errors?.['minlength'] && formAdmin.controls['mdp'].touched">
+                        Le mot de passe doit comporter au moins 8 caractères!
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type=" submit" class="btn btn-primary">Se Connecter</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
